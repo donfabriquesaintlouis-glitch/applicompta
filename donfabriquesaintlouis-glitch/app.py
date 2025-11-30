@@ -5,7 +5,11 @@ import os
 from datetime import datetime
 import hashlib
 from firebase_admin import credentials, initialize_app, firestore
-
+# Dans app.py:
+firebase_config_str = os.environ.get('__firebase_config')
+# ...
+firebase_config = json.loads(firebase_config_str)
+cred = credentials.Certificate(firebase_config)
 # --- Configuration ---
 APP_ID = os.environ.get('__app_id', 'compta-smmd-default')
 USER_ID = os.environ.get('__user_id', 'unknown_user') 
